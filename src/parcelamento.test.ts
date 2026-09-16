@@ -65,9 +65,24 @@ describe('calcularParcelamento', () => {
     })
 
     describe('validações', () => {
-        it('lança erro quando o número de parcelas for menor que 1')
-        it('lança erro quando o número de parcelas for maior que 18')
-        it('lança erro quando o número de parcelas não for inteiro')
-        it('lança erro quando o valor da compra for zero ou negativo')
+        it('lança erro quando o número de parcelas for menor que 1', () => {
+            const valorParcelaMenorUm = calcularParcelamento(1000, -1)
+            expect(valorParcelaMenorUm).toThrow("Erro: número de parcelas menor que 1")
+        })
+
+        it('lança erro quando o número de parcelas for maior que 18', () => {
+            const valorParcelaMaiorDezoito = calcularParcelamento(1000, 19)
+            expect(valorParcelaMaiorDezoito).toThrow("Erro: número de parcelas maior que 18")
+        })
+
+        it('lança erro quando o número de parcelas não for inteiro', () => {
+            const valorParcelaQuebrado = calcularParcelamento(1000, 1.5)
+            expect(valorParcelaQuebrado).toThrow("Erro: número de parcelas tem que ser um numero inteiro")
+        })
+
+        it('lança erro quando o valor da compra for zero', () => {
+            const valorParcelaZero = calcularParcelamento(1000, 0)
+            expect(valorParcelaZero).toThrow("Erro: número de parcelas tem que ser maior que zero")
+        })
     })
 })
