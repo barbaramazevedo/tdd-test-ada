@@ -1,9 +1,22 @@
-import { describe, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 describe('calcularParcelamento', () => {
     describe('sem juros (1x a 4x)', () => {
-        it('retorna o valor total em parcela única quando for 1x')
-        it('divide o valor sem juros quando for 4x')
+        it('retorna o valor total em parcela única quando for 1x'), () => {
+            //Act
+            const valorTotalParcelaUnica = calcularParcelamento(100, 1)
+    
+            //Assert
+            expect(valorTotalParcelaUnica).toBe(100)
+        }
+        
+        it('divide o valor sem juros quando for 4x'), () => {
+            //Act
+            const valorParcelaQuatro = calcularParcelamento(100, 4)
+    
+            //Assert
+            expect(valorParcelaQuatro).toBe(25)
+        }
     })
 
     describe('com juros', () => {
