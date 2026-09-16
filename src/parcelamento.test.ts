@@ -58,7 +58,10 @@ describe('calcularParcelamento', () => {
     })
 
     describe('arredondamento', () => {
-        it('arredonda o valor da parcela para 2 casas decimais')
+        it('arredonda o valor da parcela para 2 casas decimais', () => {
+            const valorParcelaTres = calcularParcelamento(100, 3)
+            expect(valorParcelaTres).toBe(33.33)
+        })
     })
 
     describe('validações', () => {
