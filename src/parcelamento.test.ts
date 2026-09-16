@@ -27,12 +27,33 @@ describe('calcularParcelamento', () => {
         })
 
         it('aplica 8% sobre o total quando for de 9x a 12x', () => {
+            const valorParcelaOito = calcularParcelamento(1000, 9)
+            expect(valorParcelaOito).toBe(120)
         })
 
         it('aplica 10% sobre o total quando for de 13x a 18x', () => {
+            const valorParcelaTreze = calcularParcelamento(1000, 13)
+            expect(valorParcelaTreze).toBe(84.62)
         })
 
         it('aplica a faixa correta nos limites (4x, 5x, 8x, 9x, 12x, 13x)', () => {
+            const valorParcelaQuatro = calcularParcelamento(1000, 4)
+            expect(valorParcelaQuatro).toBe(250)
+
+            const valorParcelaCinco = calcularParcelamento(1000, 5)
+            expect(valorParcelaCinco).toBe(210)
+
+            const valorParcelaOito = calcularParcelamento(1000, 8)
+            expect(valorParcelaOito).toBe(131.25)
+
+            const valorParcelaNove = calcularParcelamento(1000, 9)
+            expect(valorParcelaNove).toBe(120)
+
+            const valorParcelaDoze = calcularParcelamento(1000, 12)
+            expect(valorParcelaDoze).toBe(90)
+
+            const valorParcelaTreze = calcularParcelamento(1000, 13)
+            expect(valorParcelaTreze).toBe(84.62)
         })
     })
 
