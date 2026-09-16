@@ -27,8 +27,8 @@ describe('calcularParcelamento', () => {
         })
 
         it('aplica 8% sobre o total quando for de 9x a 12x', () => {
-            const valorParcelaOito = calcularParcelamento(1000, 9)
-            expect(valorParcelaOito).toBe(120)
+            const valorParcelaNove = calcularParcelamento(1000, 9)
+            expect(valorParcelaNove).toBe(120)
         })
 
         it('aplica 10% sobre o total quando for de 13x a 18x', () => {
