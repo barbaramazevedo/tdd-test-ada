@@ -81,8 +81,13 @@ describe('calcularParcelamento', () => {
         })
 
         it('lança erro quando o valor da compra for zero', () => {
-            const valorParcelaZero = calcularParcelamento(1000, 0)
-            expect(valorParcelaZero).toThrow("Erro: número de parcelas tem que ser maior que zero")
+            const valorParcelaZero = calcularParcelamento(0, 1)
+            expect(valorParcelaZero).toThrow("Erro: valor da compra tem que ser maior que zero")
+        })
+
+        it('lança erro quando o valor da compra for negativo', () => {
+            const valorParcelaZero = calcularParcelamento(-100, 1)
+            expect(valorParcelaZero).toThrow("Erro: valor da compra tem que ser maior que zero")
         })
     })
 })
