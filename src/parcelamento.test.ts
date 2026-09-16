@@ -66,28 +66,23 @@ describe('calcularParcelamento', () => {
 
     describe('validações', () => {
         it('lança erro quando o número de parcelas for menor que 1', () => {
-            const valorParcelaMenorUm = calcularParcelamento(1000, -1)
-            expect(valorParcelaMenorUm).toThrow("Erro: número de parcelas menor que 1")
+            expect(() => calcularParcelamento(1000, -1)).toThrow("Erro: número de parcelas menor que 1")
         })
 
         it('lança erro quando o número de parcelas for maior que 18', () => {
-            const valorParcelaMaiorDezoito = calcularParcelamento(1000, 19)
-            expect(valorParcelaMaiorDezoito).toThrow("Erro: número de parcelas maior que 18")
+            expect(() => calcularParcelamento(1000, 19)).toThrow("Erro: número de parcelas maior que 18")
         })
 
         it('lança erro quando o número de parcelas não for inteiro', () => {
-            const valorParcelaQuebrado = calcularParcelamento(1000, 1.5)
-            expect(valorParcelaQuebrado).toThrow("Erro: número de parcelas tem que ser um numero inteiro")
+            expect(() => calcularParcelamento(1000, 1.5)).toThrow("Erro: número de parcelas tem que ser um número inteiro")
         })
 
         it('lança erro quando o valor da compra for zero', () => {
-            const valorParcelaZero = calcularParcelamento(0, 1)
-            expect(valorParcelaZero).toThrow("Erro: valor da compra tem que ser maior que zero")
+            expect(() => calcularParcelamento(0, 1)).toThrow("Erro: valor da compra tem que ser maior que zero")
         })
 
         it('lança erro quando o valor da compra for negativo', () => {
-            const valorParcelaZero = calcularParcelamento(-100, 1)
-            expect(valorParcelaZero).toThrow("Erro: valor da compra tem que ser maior que zero")
+            expect(() => calcularParcelamento(-100, 1)).toThrow("Erro: valor da compra tem que ser maior que zero")
         })
     })
 })
