@@ -3,7 +3,14 @@ export type Parcelamento = {
   qtdParcelas: number
 }
 
-export function calcularParcelamento(valor:number, qtdParcelas:number): number {
+const TAXAS_JUROS = [
+    { limiteMax: 4, taxa: 0 },
+    { limiteMax: 8, taxa: 0.05 },
+    { limiteMax: 12, taxa: 0.08 },
+    { limiteMax: 18, taxa: 0.10 }
+]
+
+function validarEntradas(valor: number, qtdParcelas: number): void {
     if (!Number.isInteger(qtdParcelas))
         throw new Error('Erro: número de parcelas tem que ser um número inteiro')
     if (qtdParcelas < 1)
@@ -12,18 +19,13 @@ export function calcularParcelamento(valor:number, qtdParcelas:number): number {
         throw new Error('Erro: número de parcelas maior que 18')
     if (valor <= 0)
         throw new Error('Erro: valor da compra tem que ser maior que zero')
+}
 
-    let resultado: number
+export function calcularParcelamento(valor:number, qtdParcelas:number): number {
+    validarEntradas(valor, qtdParcelas)
 
-    if (qtdParcelas <= 4) {
-        resultado = valor / qtdParcelas
-    } else if (qtdParcelas <= 8) {
-        resultado = (valor * 1.05) / qtdParcelas
-    } else if (qtdParcelas <= 12) {
-        resultado = (valor * 1.08) / qtdParcelas
-    } else {
-        resultado = (valor * 1.10) / qtdParcelas
-    }
+    const { taxa } = TAXAS_JUROS.find(f => qtdParcelas <= f.limiteMax)!
+    const resultado = (valor * (1 + taxa)) / qtdParcelas
 
     return Math.round(resultado * 100) / 100
 }
